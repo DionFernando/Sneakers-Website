@@ -43,9 +43,10 @@
 
 <div class="login-container">
     <div class="brand-logo">
-        <img src="shoe-logo.png" alt="Shoe Shop Logo">
+        <img src="${pageContext.request.contextPath}/resources/assets/images/logo/Sneakerz B.png" alt="Shoe Shop Logo">
+
     </div>
-    <h4 class="text-center">Welcome to Shoe Shop</h4>
+    <h4 class="text-center">Welcome to SneakerZ</h4>
     <form id="loginForm" action="LoginServlet" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
