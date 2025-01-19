@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Shoe Shop</title>
+    <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #010c12;
+            background: url('assets/images/img1.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,14 +16,26 @@
             margin: 0;
         }
 
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,black,#010a14,#010f17,black);
+            opacity: 0.8;
+        }
+
         .login-container {
-            background: #9ab9d9;
+            background: #e9ecf7;
+            color: black;
             padding: 2rem;
-            border-radius: 10px 50px 10px 50px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0px 50px 0px 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
             max-width: 400px;
             width: 100%;
             animation: popout 0.5s ease-out;
+            z-index: 2;
         }
 
         .brand-logo {
@@ -31,6 +44,7 @@
         }
         .brand-logo img {
             width: 80px;
+            z-index: 3;
         }
         .d-grid>button {
             background-color: #033638;
@@ -140,10 +154,13 @@
 <body>
 
 <%--<div class="top-left-sector"></div>--%>
+<body>
+
+<div class="background-overlay"></div>
 
 <div class="login-container">
     <div class="brand-logo">
-        <img src="${pageContext.request.contextPath}/assets/SneakerZ%20B.png" alt="Shoe Shop Logo">
+        <img src="${pageContext.request.contextPath}/assets/images/SneakerZ%20B.png" alt="Shoe Shop Logo">
     </div>
     <h4 class="text-center">
         <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span></span>
@@ -165,11 +182,10 @@
         <div class="text-center mt-3">
             <small>Don't have an account? <a href="register.jsp">Register here</a></small>
         </div>
+        <div class="text-center mt-3 text-danger">
+            <%= request.getParameter("error") != null ? request.getParameter("error") : "" %>
+        </div>
     </form>
-</div>
-
-<div class="bottom-right-image">
-    <img src="${pageContext.request.contextPath}/assets/shoe3.png" alt="Bottom Right Image">
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
