@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dion
-  Date: 1/19/25
-  Time: 5:36 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,21 +7,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #010c12;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
+
         .login-container {
-            background: white;
+            background: #9ab9d9;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 10px 50px 10px 50px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            animation: popout 0.5s ease-out;
         }
+
         .brand-logo {
             text-align: center;
             margin-bottom: 1rem;
@@ -37,16 +32,124 @@
         .brand-logo img {
             width: 80px;
         }
+        .d-grid>button {
+            background-color: #033638;
+            border: none;
+        }
+        .d-grid>button:hover {
+            background-color: #06737d;
+            box-shadow: 0 0 10px #37aee6;
+        }
+        .bottom-right-image {
+            position: fixed;
+            bottom: -15px;
+            right: -70px;
+            z-index: -2;
+        }
+        .bottom-right-image>img {
+            width: 700px;
+            animation: infiniteAnimation 4s infinite;
+        }
+
+        @keyframes popout {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+
+
+        @keyframes infiniteAnimation {
+            0% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.95);
+            }
+        }
+
+        @keyframes popout-letters {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .text-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-center span {
+            display: inline-block;
+            opacity: 0;
+            animation: popout-letters 0.5s forwards;
+        }
+
+        .text-center span:nth-child(8){
+            margin: 0 2px;
+        }
+        .text-center span:nth-child(11){
+            margin: 0 2px;
+        }
+
+        .text-center span:nth-child(1) { animation-delay: 0s; }
+        .text-center span:nth-child(2) { animation-delay: 0.05s; }
+        .text-center span:nth-child(3) { animation-delay: 0.1s; }
+        .text-center span:nth-child(4) { animation-delay: 0.15s; }
+        .text-center span:nth-child(5) { animation-delay: 0.2s; }
+        .text-center span:nth-child(6) { animation-delay: 0.25s; }
+        .text-center span:nth-child(7) { animation-delay: 0.3s; }
+        .text-center span:nth-child(8) { animation-delay: 0.1s; }
+        .text-center span:nth-child(9) { animation-delay: 0.4s; }
+        .text-center span:nth-child(10) { animation-delay: 0.45s; }
+        .text-center span:nth-child(11) { animation-delay: 0.1s; }
+        .text-center span:nth-child(12) { animation-delay: 0.55s; }
+        .text-center span:nth-child(13) { animation-delay: 0.6s; }
+        .text-center span:nth-child(14) { animation-delay: 0.65s; }
+        .text-center span:nth-child(15) { animation-delay: 0.7s; }
+        .text-center span:nth-child(16) { animation-delay: 0.75s; }
+        .text-center span:nth-child(17) { animation-delay: 0.8s; }
+        .text-center span:nth-child(18) { animation-delay: 0.5s; }
+        .text-center span:nth-child(19) { animation-delay: 0.8s; }
+
+        .top-left-sector {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            top: 0px;
+            left: 0px;
+            background: linear-gradient(90deg, #3cafb5, #e962f0);
+            border-radius:0 0 100% 0;
+        }
+
     </style>
 </head>
 <body>
 
+<%--<div class="top-left-sector"></div>--%>
+
 <div class="login-container">
     <div class="brand-logo">
-        <img src="${pageContext.request.contextPath}/resources/assets/images/logo/Sneakerz B.png" alt="Shoe Shop Logo">
-
+        <img src="${pageContext.request.contextPath}/assets/SneakerZ%20B.png" alt="Shoe Shop Logo">
     </div>
-    <h4 class="text-center">Welcome to SneakerZ</h4>
+    <h4 class="text-center">
+        <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span></span>
+        <span>t</span><span>o</span><span></span>
+        <span>S</span><span>n</span><span>e</span><span>a</span><span>k</span><span>e</span><span>r</span><span>Z</span>
+    </h4>
     <form id="loginForm" action="LoginServlet" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -65,6 +168,10 @@
     </form>
 </div>
 
+<div class="bottom-right-image">
+    <img src="${pageContext.request.contextPath}/assets/shoe3.png" alt="Bottom Right Image">
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -80,4 +187,3 @@
 
 </body>
 </html>
-
