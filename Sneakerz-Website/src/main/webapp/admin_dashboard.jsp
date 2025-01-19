@@ -1,116 +1,99 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dion
-  Date: 1/19/25
-  Time: 11:46 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Navigation bar styling */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            background-color: #333;
-            color: white;
-            height: 60px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to right, #03111c, #03151c,#010c14);
         }
 
-        /* Logo styling */
-        .navbar .logo {
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: white;
-            text-decoration: none;
+        .db-logo{
+            height: 50px;
+            margin-right: 10px;
         }
 
-        /* Navigation buttons styling */
-        .navbar .nav-buttons {
-            display: flex;
-            gap: 15px;
+        .nav-item {
+            margin-right: 15px;
         }
 
-        .navbar .nav-buttons button {
+        .nav-link {
+            font-family: "Roboto Thin", sans-serif;
+            color: white !important;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-link:hover {
+            color: #34abeb !important;
+        }
+
+        .nav-link.logout {
+            color: #850000 !important;
+            font-weight: 400;
+        }
+
+        .nav-link.logout:hover {
+            color: #d11d1d !important;
+        }
+
+        .dropdown-menu {
             background-color: #444;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
         }
 
-        .navbar .nav-buttons button:hover {
-            background-color: #555;
+        .dropdown-item {
+            color: white !important;
         }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .navbar .nav-buttons button {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
+        .dropdown-item:hover {
+            background-color: #555 !important;
         }
 
-        @media (max-width: 480px) {
-            .navbar .nav-buttons {
-                gap: 10px;
-            }
-
-            .navbar .logo {
-                font-size: 18px;
-            }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
         }
+
+
     </style>
 </head>
 <body>
-<!-- Navigation bar -->
-<div class="navbar">
-    <a href="#" class="logo">Admin Panel</a>
-    <div class="nav-buttons">
-        <button onclick="navigate('logout')">Logout</button>
-        <button onclick="navigate('product')">Product</button>
-        <button onclick="navigate('category')">Category</button>
-        <button onclick="navigate('order')">Order</button>
-        <button onclick="navigate('user')">User</button>
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <img src="assets/images/SneakerZ%20W.png" class="db-logo">
+        <!-- Hamburger Menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="user.jsp">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="category.jsp">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="order.jsp">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product.jsp">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" href="logout.jsp">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
 
-<!-- JavaScript to handle navigation -->
-<script>
-    function navigate(page) {
-        const pages = {
-            logout: 'logout.jsp',
-            product: 'product.jsp',
-            category: 'category.jsp',
-            order: 'order.jsp',
-            user: 'user.jsp'
-        };
-        const pageUrl = pages[page];
-        if (pageUrl) {
-            window.location.href = pageUrl;
-        } else {
-            alert('Page not found');
-        }
-    }
-</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
