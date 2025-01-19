@@ -25,7 +25,6 @@
             overflow: hidden;
         }
 
-        /* Ensure iframe content fills the available space */
         #main-container {
             height: 100%;
             width: 100%;
@@ -40,6 +39,7 @@
 <body>
 <div id="main-container">
 
+    <h1>user</h1>
 </div>
 
 </body>

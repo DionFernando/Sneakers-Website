@@ -45,8 +45,12 @@
 
         .iframe-container {
             width: 100%;
-            height: 100vh;
+            height: calc(100vh - 60px); /* Adjust based on navbar height */
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px;  /* Correctly align below the fixed navbar */
         }
 
         .iframe-container iframe {
@@ -77,13 +81,13 @@
                     <a class="nav-link" href="#" onclick="loadPage('admin_user_managment.jsp')">User</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="loadPage('category.jsp')">Category</a>
+                    <a class="nav-link" href="#" onclick="loadPage('admin_category_management.jsp')">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="loadPage('order.jsp')">Order</a>
+                    <a class="nav-link" href="#" onclick="loadPage('admin_order_management.jsp')">Order</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="loadPage('product.jsp')">Product</a>
+                    <a class="nav-link active" href="#" onclick="loadPage('admin_product_management.jsp')">Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link logout" href="login.jsp">Logout</a>
@@ -93,18 +97,11 @@
     </div>
 </nav>
 
-<div class="iframe-container" style="padding-top: 60px;">
-    <iframe id="content-frame" src="" name="content-frame"></iframe>
+<div class="iframe-container">
+    <iframe id="content-frame" src="admin_user_managment.jsp" name="content-frame"></iframe>
 </div>
 
 <!-- JavaScript for dynamic page loading -->
-<script>
-    function loadPage(page) {
-        document.getElementById('content-frame').src = page;
-    }
-</script>
-
-<!-- Update the admin_dashboard.jsp to include the JavaScript for setting the active class -->
 <script>
     function loadPage(page) {
         document.getElementById('content-frame').src = page;
