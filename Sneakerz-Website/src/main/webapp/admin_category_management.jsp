@@ -40,7 +40,6 @@
 <body>
 <div id="main-container">
 
-    <h1>category</h1>
 </div>
 
 </body>

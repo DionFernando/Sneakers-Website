@@ -84,10 +84,10 @@
                     <a class="nav-link" href="#" onclick="loadPage('admin_category_management.jsp')">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="loadPage('admin_order_management.jsp')">Order</a>
+                    <a class="nav-link active" href="#" onclick="loadPage('admin_product_management.jsp')">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" onclick="loadPage('admin_product_management.jsp')">Product</a>
+                    <a class="nav-link" href="#" onclick="loadPage('admin_order_management.jsp')">Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link logout" href="welcome.jsp">Logout</a>
