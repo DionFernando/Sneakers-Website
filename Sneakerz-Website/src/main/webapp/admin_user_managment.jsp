@@ -1,11 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dion
-  Date: 1/20/25
-  Time: 12:36 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*, javax.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.naming.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,34 +86,54 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Example Rows (Static for Now, Replace with Dynamic Content) -->
+            <%
+                try {
+                    // Database connection details
+                    String dbURL = "jdbc:mysql://localhost:3306/ecommerce";
+                    String dbUsername = "root";
+                    String dbPassword = "Ijse@123";
+
+                    // Load the JDBC driver
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+
+                    // Establish the connection
+                    Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+
+                    // Query to fetch users
+                    String sql = "SELECT * FROM users";
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql);
+
+                    // Iterate through the results
+                    while (rs.next()) {
+                        int userId = rs.getInt("user_id");
+                        String username = rs.getString("username");
+                        String email = rs.getString("email");
+                        String createdAt = rs.getString("created_at");
+                        // Assuming status column is not present, we infer active/deactivated based on conditions:
+                        String status = (createdAt != null) ? "Active" : "Deactivated"; // Example condition
+
+            %>
             <tr>
-                <td>1</td>
-                <td>user1</td>
-                <td>user1@example.com</td>
-                <td><span class="status-active">Active</span></td>
+                <td><%= userId %></td>
+                <td><%= username %></td>
+                <td><%= email %></td>
+                <td><span class="<%= status.equals("Active") ? "status-active" : "status-deactivated" %>"><%= status %></span></td>
                 <td>
-                    <button class="btn btn-sm btn-deactivate">Deactivate</button>
+                    <button class="btn btn-sm <%= status.equals("Active") ? "btn-deactivate" : "btn-activate" %>">
+                        <%= status.equals("Active") ? "Deactivate" : "Activate" %>
+                    </button>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>user2</td>
-                <td>user2@example.com</td>
-                <td><span class="status-deactivated">Deactivated</span></td>
-                <td>
-                    <button class="btn btn-sm btn-activate">Activate</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>user3</td>
-                <td>user3@example.com</td>
-                <td><span class="status-active">Active</span></td>
-                <td>
-                    <button class="btn btn-sm btn-deactivate">Deactivate</button>
-                </td>
-            </tr>
+            <%
+                    }
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            %>
             </tbody>
         </table>
     </div>
