@@ -90,7 +90,7 @@
                     <a class="nav-link active" href="#" onclick="loadPage('admin_product_management.jsp')">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link logout" href="login.jsp">Logout</a>
+                    <a class="nav-link logout" href="register.jsp">Logout</a>
                 </li>
             </ul>
         </div>

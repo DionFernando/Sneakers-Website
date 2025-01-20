@@ -1,3 +1,4 @@
+<%--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,21 +140,12 @@
         .text-center span:nth-child(18) { animation-delay: 0.5s; }
         .text-center span:nth-child(19) { animation-delay: 0.8s; }
 
-        .top-left-sector {
-            position: fixed;
-            width: 120px;
-            height: 120px;
-            top: 0px;
-            left: 0px;
-            background: linear-gradient(90deg, #3cafb5, #e962f0);
-            border-radius:0 0 100% 0;
-        }
 
     </style>
 </head>
 <body>
 
-<%--<div class="top-left-sector"></div>--%>
+&lt;%&ndash;<div class="top-left-sector"></div>&ndash;%&gt;
 <body>
 
 <div class="background-overlay"></div>
@@ -202,4 +194,4 @@
 </script>
 
 </body>
-</html>
+</html>--%>

@@ -105,7 +105,7 @@
 
 <script>
     function navigateToLogin() {
-        window.location.href = '${pageContext.request.contextPath}/login.jsp';
+        window.location.href = '${pageContext.request.contextPath}/register.jsp';
     }
 </script>
 
