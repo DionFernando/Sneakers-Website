@@ -22,7 +22,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #001b26;
+            background: url('assets/images/img2.png') no-repeat center center fixed;
             color: white;
         }
 
