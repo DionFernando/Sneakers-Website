@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*, jakarta.servlet.*, jakarta.servlet.http.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,6 @@
             flex-direction: column;
         }
 
-        /* Dimmer Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -55,9 +55,10 @@
         #main-container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
             height: 100%;
+            width: 100%;
         }
 
         .form-container {
@@ -116,6 +117,49 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+
+        /* Table styling */
+        table {
+            width: 90%;
+            margin-top: 60px;
+            margin-left: 5%;
+            border-collapse: collapse;
+            background-color: #fff;
+            color: #212529;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        table th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -159,6 +203,64 @@
             </form>
         </div>
     </div>
+
+    <!-- Category Table -->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <%
+            Connection connection = null;
+            PreparedStatement pstm = null;
+            ResultSet rs = null;
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ecommerce", "root", "Ijse@123");
+
+                String sql = "SELECT * FROM categories";
+                pstm = connection.prepareStatement(sql);
+                rs = pstm.executeQuery();
+
+                int rowNumber = 1;
+                while (rs.next()) {
+                    int categoryId = rs.getInt("category_id");
+                    String categoryName = rs.getString("name");
+                    String categoryDescription = rs.getString("description");
+        %>
+        <tr>
+            <td><%= rowNumber++ %></td>
+            <td><%= categoryName %></td>
+            <td><%= categoryDescription %></td>
+            <td class="action-buttons">
+                <button class="btn btn-edit">Edit</button>
+                <button class="btn btn-delete">Delete</button>
+            </td>
+        </tr>
+        <%
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) rs.close();
+                    if (pstm != null) pstm.close();
+                    if (connection != null) connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        %>
+
+        </tbody>
+    </table>
 
 </div>
 
