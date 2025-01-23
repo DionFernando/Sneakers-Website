@@ -52,16 +52,16 @@
                 <input type="submit" value="Login" class="btn solid" />
                 <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -88,16 +88,16 @@
                 <input type="submit" class="btn" value="Sign up" />
                 <p class="social-text">Or Sign up with social platforms</p>
                 <div class="social-media">
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a href="assets/images/FB.png" class="social-icon">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -116,7 +116,7 @@
                     Sign up
                 </button>
             </div>
-            <img src="" class="image" alt="" />
+            <img src="#" class="image" alt="" />
         </div>
         <div class="panel right-panel">
             <div class="content">
@@ -128,7 +128,7 @@
                     Sign in
                 </button>
             </div>
-            <img src="" class="image" alt="" />
+            <img src="#" class="image" alt="" />
         </div>
     </div>
 </div>
