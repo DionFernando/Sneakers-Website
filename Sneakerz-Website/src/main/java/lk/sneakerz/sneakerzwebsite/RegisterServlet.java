@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         if (isUsernameTaken(username)) {
-            response.sendRedirect("register.jsp?error=Username already taken");
+            response.sendRedirect("login.jsp?error=Username already taken");
             return;
         }
 
@@ -49,13 +49,13 @@ public class RegisterServlet extends HttpServlet {
             int rowsInserted = pstmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                response.sendRedirect("register.jsp");
+                response.sendRedirect("login.jsp");
             } else {
-                response.sendRedirect("register.jsp?error=Registration failed. Please try again.");
+                response.sendRedirect("login.jsp?error=Registration failed. Please try again.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("register.jsp?error=Database error. Please try again later.");
+            response.sendRedirect("login.jsp?error=Database error. Please try again later.");
         }
     }
 

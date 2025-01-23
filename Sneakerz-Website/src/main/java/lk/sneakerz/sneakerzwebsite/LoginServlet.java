@@ -47,10 +47,10 @@ public class LoginServlet extends HttpServlet {
                                     RequestDispatcher dispatcher = request.getRequestDispatcher("user_dashboard.jsp");
                                     dispatcher.forward(request, response);
                                 } else {
-                                    response.sendRedirect("regsiter.jsp?error=Invalid username or password");
+                                    response.sendRedirect("login.jsp?error=Invalid username or password");
                                 }
                             } else {
-                                response.sendRedirect("register.jsp?error=Invalid username or password");
+                                response.sendRedirect("login.jsp?error=Invalid username or password");
                             }
                         }
                     }
