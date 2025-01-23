@@ -25,6 +25,7 @@
             z-index: 1000;
             background-color: white;
             color: black;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
         }
 
         .navbar-brand {
@@ -467,7 +468,7 @@
             background-image: url("assets/images/insta.png");
         }
         .social-icon:last-child{
-            background-image: url("assets/images/instagram.png");
+            background-image: url("assets/images/emaill.png");
         }
 
 
@@ -490,7 +491,7 @@
 
 <body>
 <!--Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" >
     <a class="navbar-brand" href="user_dashboard.jsp">
         <img src="assets/images/SneakerZ%20B.png" alt="Logo" style="height: 40px;">
     </a>
@@ -549,6 +550,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 
 <!--Jumbotron-->
