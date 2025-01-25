@@ -1,20 +1,19 @@
 package lk.sneakerz.sneakerzwebsite.product;
 
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.http.Part;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.*;
-import java.io.PrintWriter;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/product-save")
-@MultipartConfig  // Add this annotation
 public class AdminSaveProductServlet extends HttpServlet {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/ecommerce";
     private static final String DB_USER = "root";
@@ -25,9 +24,6 @@ public class AdminSaveProductServlet extends HttpServlet {
         String productDescription = request.getParameter("product_description");
         String productPriceStr = request.getParameter("product_price");
         String productStockStr = request.getParameter("product_stock");
-
-        // Get the uploaded image
-        Part imagePart = request.getPart("product_image");
 
         PrintWriter out = response.getWriter();
 
@@ -44,52 +40,43 @@ public class AdminSaveProductServlet extends HttpServlet {
             double productPrice = Double.parseDouble(productPriceStr);
             int productStock = Integer.parseInt(productStockStr);
 
-            // Establish a database connection
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
 
-            // Insert product data into the products table
-            String productSql = "INSERT INTO products (name, description, price, stock) VALUES (?, ?, ?, ?)";
-            PreparedStatement productStmt = connection.prepareStatement(productSql, PreparedStatement.RETURN_GENERATED_KEYS);
-            productStmt.setString(1, productName);
-            productStmt.setString(2, productDescription);
-            productStmt.setDouble(3, productPrice);
-            productStmt.setInt(4, productStock);
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            int productRowsInserted = productStmt.executeUpdate();
+                String sql = "INSERT INTO products (name, description, price, stock) VALUES (?, ?, ?, ?)";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, productName);
+                preparedStatement.setString(2, productDescription);
+                preparedStatement.setDouble(3, productPrice);
+                preparedStatement.setInt(4, productStock);
 
-            if (productRowsInserted > 0) {
-                // Get the generated product_id
-                ResultSet generatedKeys = productStmt.getGeneratedKeys();
-                int productId = -1;
-                if (generatedKeys.next()) {
-                    productId = generatedKeys.getInt(1);
-                }
+                int rowsInserted = preparedStatement.executeUpdate();
 
-                // If image is uploaded, save it to the product_images table
-                if (imagePart != null) {
-                    InputStream imageStream = imagePart.getInputStream();
-
-                    String imageSql = "INSERT INTO product_images (product_id, image) VALUES (?, ?)";
-                    PreparedStatement imageStmt = connection.prepareStatement(imageSql);
-                    imageStmt.setInt(1, productId);
-                    imageStmt.setBlob(2, imageStream);
-
-                    int imageRowsInserted = imageStmt.executeUpdate();
-                    if (imageRowsInserted > 0) {
-                        response.sendRedirect("admin_product_management.jsp?message=Product and image added successfully.");
-                    } else {
-                        response.sendRedirect("admin_product_management.jsp?error=Error adding product image.");
-                    }
+                if (rowsInserted > 0) {
+                    response.sendRedirect("admin_product_management.jsp?message=Product added successfully.");
                 } else {
-                    response.sendRedirect("admin_product_management.jsp?message=Product added without an image.");
+                    response.sendRedirect("admin_product_management.jsp?error=Error adding product. Please try again.");
                 }
-            } else {
-                response.sendRedirect("admin_product_management.jsp?error=Error adding product.");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendRedirect("admin_product_management.jsp?error=Database error.");
+            } finally {
+                try {
+                    if (preparedStatement != null) preparedStatement.close();
+                    if (connection != null) connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("admin_product_management.jsp?error=Database error.");
+        } catch (NumberFormatException e) {
+            response.sendRedirect("admin_product_management.jsp?error=Invalid price or stock.");
         }
     }
 }
+
