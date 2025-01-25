@@ -49,7 +49,7 @@
                 <a class="nav-link" href="#" onclick="loadPage('women.jsp')">Women</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="assets/gifs/cart.png"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link" href="#" onclick="loadPage('cart.jsp')"><i class="fas fa-shopping-cart"></i></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="assets/images/settings.png"><i class="fas fa-cog"></i></a>
@@ -189,33 +189,34 @@
         </div>
     </div>
 
-    <!--Footer-->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="user_dashboard.jsp">Home</a></li>
-                        <li><a href="new_releases.jsp">New Releases</a></li>
-                        <li><a href="women.jsp">Women</a></li>
-                        <li><a href="men.jsp">Men</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h4>Contact Us</h4>
-                    <p>101 N Main Street<br>Random, IL 61821<br>+94 76 714 9543</p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h4>Follow Us</h4>
-                    <div class="social-icon"></div><div class="social-icon"></div><div class="social-icon"></div>
-                </div>
+</div>
+
+<!--Footer-->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="user_dashboard.jsp">Home</a></li>
+                    <li><a href="new_releases.jsp">New Releases</a></li>
+                    <li><a href="women.jsp">Women</a></li>
+                    <li><a href="men.jsp">Men</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h4>Contact Us</h4>
+                <p>101 N Main Street<br>Random, IL 61821<br>+94 76 714 9543</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <h4>Follow Us</h4>
+                <div class="social-icon"></div><div class="social-icon"></div><div class="social-icon"></div>
             </div>
         </div>
-        <hr class="hr-footer">
-        <div class="copyright">Copyright 2025 Workstate. All rights reserved. Dion Fernando</div>
-    </footer>
-</div>
+    </div>
+    <hr class="hr-footer">
+    <div class="copyright">Copyright 2025 Workstate. All rights reserved. Dion Fernando</div>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
