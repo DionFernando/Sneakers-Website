@@ -9,8 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .navbar {
-            background: linear-gradient(to right, #03111c, #03151c, #010c14);
+            background: white;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
             position: fixed;
+            color: black !important;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -27,7 +29,7 @@
 
         .nav-link {
             font-family: "Roboto Thin", sans-serif;
-            color: white !important;
+            color: black !important;
             transition: color 0.3s;
         }
 
@@ -69,7 +71,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <!-- Logo -->
-        <img src="assets/images/SneakerZ%20W.png" class="db-logo">
+        <img src="assets/images/SneakerZ%20B.png" class="db-logo">
         <!-- Hamburger Menu -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

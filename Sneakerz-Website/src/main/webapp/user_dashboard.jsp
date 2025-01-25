@@ -18,7 +18,7 @@
     <style>
         /*navigation bar*/
         .navbar {
-            position: fixed;
+            position: fixed !important;
             top: 0;
             left: 0;
             width: 100%;
@@ -43,19 +43,24 @@
 
         .nav-link {
             font-weight: 500;
-            color: black; /* Changed to black for contrast */
+            color: black !important;
         }
 
         .nav-link:hover{
-            color:#1B4242;
+            color:#34abeb !important;
+        }
+
+        #nav-logout:hover{
+            color: red!important;
         }
 
         a:link {
-            color: black; /* Changed to black for contrast */
+            color: white;
         }
 
         a:hover {
-            color: #1B4242;
+            color: #34abeb;
+            text-decoration: none !important;
         }
 
         .navbar-nav {
@@ -448,7 +453,7 @@
         }
 
         a:hover {
-            color: gray;
+            color: #1B4242!important;
         }
 
         .social-icon {
@@ -462,13 +467,13 @@
         }
 
         .social-icon:first-child{
-            background-image: url("assets/images/facebook.png");
+            background-image: url("assets/images/facebook.png") !important;
         }
         .social-icon:nth-child(2){
-            background-image: url("assets/images/insta.png");
+            background-image: url("assets/images/insta.png") !important;
         }
         .social-icon:last-child{
-            background-image: url("assets/images/emaill.png");
+            background-image: url("assets/images/emaill.png") !important;
         }
 
 
@@ -516,7 +521,7 @@
                 <a class="nav-link" href="assets/images/settings.png"><i class="fas fa-cog"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="welcome.jsp">Logout</a>
+                <a class="nav-link" id="nav-logout" href="welcome.jsp">Logout</a>
             </li>
         </ul>
     </div>
@@ -608,7 +613,7 @@
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1578116922645-3976907a7671?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" class="card-img-top" alt="blue black nike">
                 <div class="card-body">
-                    <h5 class="card-title">Nike<div class="cost">19,999</div></h5>
+                    <h5 class="card-title">Nike<div class="cost">LKR19999</div></h5>
                     <p class="card-text"><small class="text-muted">Men's shoe</small></p>
                 </div>
             </div>
@@ -666,7 +671,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <h4>Contact Us</h4>
-                <p>101 N Main Street<br>Random, IL 61821<br>555-555-5555</p>
+                <p>101 N Main Street<br>Random, IL 61821<br>+94 76 714 9543</p>
             </div>
             <div class="col-md-4 col-sm-12">
                 <h4>Follow Us</h4>

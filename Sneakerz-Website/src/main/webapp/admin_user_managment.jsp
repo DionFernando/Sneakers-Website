@@ -18,8 +18,8 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background: url('assets/images/img2.png') no-repeat center center fixed;
-            color: white;
+            background: #f2f2f2;
+            color: black;
         }
 
         .mb-4{

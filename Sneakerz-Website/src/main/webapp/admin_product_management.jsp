@@ -15,7 +15,8 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background: url('assets/images/img3.png') no-repeat center center fixed;
+            background: #f2f2f2;
+            color: black;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
