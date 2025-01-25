@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
 <html>
 <head>
     <title>Product List</title>
@@ -40,26 +41,57 @@
 
 <div class="product-grid">
     <%
-        // Example product data
-        String[] productNames = {"Product 1", "Product 2", "Product 3", "Product 4", "Product 5"};
-        String[] productPrices = {"$10", "$20", "$30", "$40", "$50"};
+        // Database connection details
+        String url = "jdbc:mysql://localhost:3306/ecommerce";
+        String username = "root";
+        String password = "Ijse@123";
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
         int totalImages = 20; // Total images available in the folder
 
-        // Loop through each product and assign images in order
-        for (int i = 0; i < productNames.length; i++) {
-            // Determine the image index using modulus to repeat after 20 images
-            int imageIndex = (i % totalImages) + 1;
-            String imagePath = "assets/random/" + imageIndex + ".png";
+        try {
+            // Establish connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url, username, password);
+
+            // Query to fetch products
+            String query = "SELECT name, price FROM products";
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            int i = 0;
+            // Loop through the result set
+            while (resultSet.next()) {
+                String productName = resultSet.getString("name");
+                String productPrice = resultSet.getString("price");
+
+                // Calculate image index
+                int imageIndex = (i % totalImages) + 1;
+                String imagePath = "assets/random/" + imageIndex + ".png";
+
     %>
     <div class="product-card">
-        <img src="<%= imagePath %>" alt="<%= productNames[i] %>">
-        <h3><%= productNames[i] %></h3>
-        <p class="price"><%= productPrices[i] %></p>
+        <img src="<%= imagePath %>" alt="<%= productName %>">
+        <h3><%= productName %></h3>
+        <p class="price">LKR<%= productPrice %></p>
     </div>
     <%
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
         }
     %>
 </div>
 
 </body>
 </html>
+
