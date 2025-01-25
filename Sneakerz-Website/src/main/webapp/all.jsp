@@ -14,22 +14,38 @@
             padding: 20px;
         }
         .product-card {
+            position: relative;
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow: hidden;
             padding: 10px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
+        .product-card:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            opacity: 0.9;
+        }
+
         .product-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 1px solid #ddd;
+            transition: opacity 0.3s;
         }
+
+        .product-card:hover img {
+            opacity: 0.7;
+        }
+
         .product-card h3 {
             margin: 10px 0;
         }
+
         .product-card .price {
             font-size: 1.2em;
             color: #4CAF50;
@@ -38,6 +54,33 @@
         .product-card .all-desc {
             font-size: 0.8em;
             color: black;
+        }
+
+        .product-card .add-to-cart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            z-index: 3;
+        }
+
+        .product-card:hover .add-to-cart {
+            display: block;
+            transform: translate(-50%, 0);
+        }
+
+        .product-card:hover .add-to-cart:hover {
+            background-color: #4CAF50;
         }
     </style>
 </head>
@@ -89,6 +132,7 @@
         <h3><%= product.get("name") %></h3>
         <p class="all-desc"><%= product.get("description") %></p>
         <p class="price">LKR <%= product.get("price") %></p>
+        <button class="add-to-cart">Add to Cart</button>
     </div>
     <%
             }
