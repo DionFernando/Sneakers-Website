@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*, java.util.*" %>
 <html>
 <head>
     <title>Product List</title>
@@ -7,7 +7,6 @@
         html, body {
             padding-top: 50px;
         }
-        /* Grid layout for products */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -35,6 +34,11 @@
             font-size: 1.2em;
             color: #4CAF50;
         }
+
+        .product-card .all-desc {
+            font-size: 0.8em;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -50,36 +54,43 @@
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-        int totalImages = 20; // Total images available in the folder
-
         try {
             // Establish connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
 
             // Query to fetch products
-            String query = "SELECT name, price FROM products";
+            String query = "SELECT name, description, price FROM products";
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
 
-            int i = 0;
-            // Loop through the result set
+            // Store products in a list
+            List<Map<String, String>> products = new ArrayList<>();
+            int index = 1;
+
             while (resultSet.next()) {
-                String productName = resultSet.getString("name");
-                String productPrice = resultSet.getString("price");
+                Map<String, String> product = new HashMap<>();
+                product.put("name", resultSet.getString("name"));
+                product.put("description", resultSet.getString("description"));
+                product.put("price", resultSet.getString("price"));
+                product.put("imagePath", "assets/random/" + index + ".png");
+                products.add(product);
+                index++;
+            }
 
-                // Calculate image index
-                int imageIndex = (i % totalImages) + 1;
-                String imagePath = "assets/random/" + imageIndex + ".png";
+            // Shuffle the products list
+            Collections.shuffle(products);
 
+            // Display the products
+            for (Map<String, String> product : products) {
     %>
     <div class="product-card">
-        <img src="<%= imagePath %>" alt="<%= productName %>">
-        <h3><%= productName %></h3>
-        <p class="price">LKR<%= productPrice %></p>
+        <img src="<%= product.get("imagePath") %>" alt="<%= product.get("name") %>">
+        <h3><%= product.get("name") %></h3>
+        <p class="all-desc"><%= product.get("description") %></p>
+        <p class="price">LKR <%= product.get("price") %></p>
     </div>
     <%
-                i++;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,4 +105,3 @@
 
 </body>
 </html>
-
