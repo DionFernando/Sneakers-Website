@@ -187,7 +187,7 @@
             </div>
             <% } %>
 
-            <form action="product-save" method="post">
+            <form action="product-save" method="post" enctype="multipart/form-data">
                 <h4>Add New Product</h4>
                 <hr>
                 <div class="form-group">
@@ -208,6 +208,12 @@
                 <div class="form-group">
                     <label for="stock" class="form-label">Stock:</label>
                     <input type="text" id="stock" name="product_stock" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="image" class="form-label">Product Image:</label>
+                    <input type="file" id="image" name="product_image" class="form-control" accept="image/*">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Add Product</button>

@@ -506,6 +506,9 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a class="nav-link" href="all.jsp">All</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="new_releases.jsp">New Releases</a>
             </li>
             <li class="nav-item">
