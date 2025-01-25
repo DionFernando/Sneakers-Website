@@ -1,26 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dion
-  Date: 1/25/25
-  Time: 8:14 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Product List</title>
     <style>
-        html,body{
+        html, body {
             padding-top: 50px;
         }
         /* Grid layout for products */
@@ -60,14 +43,16 @@
         // Example product data
         String[] productNames = {"Product 1", "Product 2", "Product 3", "Product 4", "Product 5"};
         String[] productPrices = {"$10", "$20", "$30", "$40", "$50"};
+        int totalImages = 20; // Total images available in the folder
 
-        // Loop through each product and generate HTML for each one
+        // Loop through each product and assign images in order
         for (int i = 0; i < productNames.length; i++) {
-            // Randomly pick an image from the assets/images/random folder
-            String randomImage = "assets/images/random/image" + (int)(Math.random() * 5 + 1) + ".jpg"; // Adjust based on your image files
+            // Determine the image index using modulus to repeat after 20 images
+            int imageIndex = (i % totalImages) + 1;
+            String imagePath = "assets/random/" + imageIndex + ".png";
     %>
     <div class="product-card">
-        <img src="<%= randomImage %>" alt="<%= productNames[i] %>">
+        <img src="<%= imagePath %>" alt="<%= productNames[i] %>">
         <h3><%= productNames[i] %></h3>
         <p class="price"><%= productPrices[i] %></p>
     </div>
