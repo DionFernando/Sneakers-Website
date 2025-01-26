@@ -241,8 +241,9 @@
     <button class="checkout">Checkout</button>
 </div>
 
+
 <!-- Overlay and Process Payment Form -->
-<div class="overlay">
+<%--<div class="overlay">
     <div class="process-payment">
         <h2>Process Payment</h2>
         <form action="process-payment.jsp" method="POST">
@@ -252,10 +253,10 @@
             <button type="submit">Pay Now</button>
         </form>
     </div>
-</div>
+</div>--%>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<%--<script>
     // Show the overlay and payment form on checkout button click
     $('.checkout').click(function() {
         $('.overlay').fadeIn();
@@ -267,7 +268,8 @@
             $('.overlay').fadeOut();
         }
     });
-</script>
+</script>--%>
+
 
 </body>
 </html>
