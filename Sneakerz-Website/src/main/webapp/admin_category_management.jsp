@@ -205,6 +205,28 @@
         </div>
     </div>
 
+    <!-- Edit Category Form -->
+    <div class="overlay" id="editDimmerOverlay">
+        <div class="category-form" id="editCategoryForm">
+            <h4>Edit Category</h4>
+            <hr>
+            <form action="category-update" method="post">
+                <input type="hidden" id="editCategoryId" name="category_id">
+                <div class="form-group">
+                    <label for="editName" class="form-label">Category Name:</label>
+                    <input type="text" id="editName" name="category_name" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="editDescription" class="form-label">Description:</label>
+                    <input type="text" id="editDescription" name="category_description" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Category</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Category Table -->
     <table class="table table-bordered">
         <thead>
@@ -241,9 +263,13 @@
             <td><%= categoryName %></td>
             <td><%= categoryDescription %></td>
             <td class="action-buttons">
-                <button class="btn btn-edit">Edit</button>
-                <button class="btn btn-delete">Delete</button>
+                <button class="btn btn-edit" onclick="editCategory('<%= categoryId %>', '<%= categoryName %>', '<%= categoryDescription %>')">Edit</button>
+                <form action="category-delete" method="post" style="display:inline;">
+                    <input type="hidden" name="category_id" value="<%= categoryId %>">
+                    <button type="submit" class="btn btn-delete">Delete</button>
+                </form>
             </td>
+
         </tr>
         <%
                 }
@@ -281,6 +307,28 @@
         if (e.target === document.getElementById('dimmerOverlay')) {
             const form = document.getElementById('categoryForm');
             form.classList.remove('active');
+            this.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    function editCategory(id, name, description) {
+        document.getElementById('editCategoryId').value = id;
+        document.getElementById('editName').value = name;
+        document.getElementById('editDescription').value = description;
+
+        const editForm = document.getElementById('editCategoryForm');
+        const editOverlay = document.getElementById('editDimmerOverlay');
+        editForm.classList.add('active');
+        editOverlay.style.display = 'flex';
+    }
+
+    // Close the edit form when clicking outside
+    document.getElementById('editDimmerOverlay').addEventListener('click', function(e) {
+        if (e.target === document.getElementById('editDimmerOverlay')) {
+            const editForm = document.getElementById('editCategoryForm');
+            editForm.classList.remove('active');
             this.style.display = 'none';
         }
     });
