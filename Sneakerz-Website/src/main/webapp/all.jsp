@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Product List</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         html, body {
             padding-top: 50px;
@@ -22,6 +23,10 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -56,12 +61,7 @@
             color: black;
         }
 
-        .product-card .add-to-cart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
+        .add-to-cart {
             background-color: black;
             color: white;
             border: none;
@@ -70,18 +70,19 @@
             cursor: pointer;
             font-size: 0.9em;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            z-index: 3;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: none;
         }
 
         .product-card:hover .add-to-cart {
             display: block;
-            transform: translate(-50%, 0);
         }
 
-        .product-card:hover .add-to-cart:hover {
-            background-color: #4CAF50;
+        .add-to-cart:hover {
+            background-color: #95af4c;
         }
+
     </style>
 </head>
 <body>
@@ -132,7 +133,7 @@
         <h3><%= product.get("name") %></h3>
         <p class="all-desc"><%= product.get("description") %></p>
         <p class="price">LKR <%= product.get("price") %></p>
-        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-cart" data-name="<%= product.get("name") %>" data-price="<%= product.get("price") %>">Add to Cart</button>
     </div>
     <%
             }
@@ -146,6 +147,30 @@
         }
     %>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Attach click event listener to all "Add to Cart" buttons
+        const buttons = document.querySelectorAll('.add-to-cart');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-name');
+                const productPrice = this.getAttribute('data-price');
+
+                // Show SweetAlert with product details
+                Swal.fire({
+                    title: 'Product Added to Cart',
+                    text: `You have added ${productName} for LKR ${productPrice} to your cart.`,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
+                // Log to the console
+                console.log(`${productName} added to cart at price LKR ${productPrice}`);
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
