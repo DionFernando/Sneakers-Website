@@ -37,6 +37,9 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a href="user_dashboard.jsp" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#" onclick="loadPage('all.jsp')">All</a>
             </li>
             <li class="nav-item">
